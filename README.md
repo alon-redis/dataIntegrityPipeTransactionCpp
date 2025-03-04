@@ -1,5 +1,8 @@
 # Redis Pipelining (normal + transaction) Concurrency Benchmark Utility
 
+###
+dataIntegrityPipelinedWithMultiExec.cpp performs X SET/GET commands in pipeline + MULTI/INCR/EXEC sequance in the end of the pipeline
+
 ## Architectural Overview
 
 This C++ application represents a sophisticated Redis client implementation designed to comprehensively validate distributed key-value store operations through advanced pipelining and multi-threaded concurrency testing methodologies. The utility systematically explores Redis transaction semantics, connection management, and concurrent data integrity preservation.
