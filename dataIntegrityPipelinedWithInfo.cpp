@@ -20,7 +20,7 @@ struct KV {
 std::vector<KV> globalData;
 std::mutex globalDataMutex;
 
-// (The global counter key is no longer used for INCR, but we keep it for consistency.)
+// (The global counter key is still created for consistency even though it isn't used for INFO.)
 std::string globalCounterKey;
 
 // Helper function to return a unique timestamp string.
@@ -48,8 +48,8 @@ redisContext* connectRedis(const std::string& host, int port) {
  * Writer thread function.
  *
  * For each iteration:
- *   (1) Outside MULTI: send a batch of SET commands for normal keys.
- *   (2) Send a single INFO command (instead of the MULTI/EXEC sequence).
+ *   (1) Outside: send a batch of SET commands for normal keys.
+ *   (2) Send a single INFO command (instead of a MULTI/EXEC block).
  *   (3) Read and discard replies.
  *   (4) Save the normal keys (and their expected values) in globalData for later verification.
  */
@@ -64,7 +64,7 @@ void writerThreadFunction(const std::string& host, int port,
         };
         std::vector<Item> localBatch(pipelineDepth);
 
-        // (1) Outside: send SET commands.
+        // (1) Send SET commands.
         for (int i = 0; i < pipelineDepth; i++) {
             std::string timestamp = getCurrentTimestamp();
             std::stringstream nk;
@@ -77,7 +77,7 @@ void writerThreadFunction(const std::string& host, int port,
                                localBatch[i].normalVal.c_str());
         }
 
-        // (2) Instead of sending MULTI/EXEC, send a single INFO command.
+        // (2) Send a single INFO command.
         redisAppendCommand(conn, "INFO");
 
         // (3) Read pipeline replies.
@@ -85,21 +85,17 @@ void writerThreadFunction(const std::string& host, int port,
         for (int i = 0; i < pipelineDepth; i++) {
             redisReply* r = nullptr;
             if (redisGetReply(conn, (void**)&r) != REDIS_OK) {
-                std::cerr << "Error reading reply for outside SET\n";
+                std::cerr << "Error reading reply for SET command\n";
             }
             if (r) freeReplyObject(r);
         }
-        // b) Read the INFO reply.
+        // b) Read the INFO reply and discard it.
         {
             redisReply* infoReply = nullptr;
             if (redisGetReply(conn, (void**)&infoReply) != REDIS_OK) {
                 std::cerr << "Error reading INFO reply\n";
             }
-            if (infoReply) {
-                // Optionally, log or process INFO output:
-                // std::cout << "INFO: " << infoReply->str << "\n";
-                freeReplyObject(infoReply);
-            }
+            if (infoReply) freeReplyObject(infoReply);
         }
 
         // (4) Save the normal keys for later verification.
@@ -184,7 +180,7 @@ void singleConnectionFunction(const std::string& host, int port,
             for (int i = 0; i < pipelineDepth; i++) {
                 redisReply* r = nullptr;
                 if (redisGetReply(conn, (void**)&r) != REDIS_OK)
-                    std::cerr << "Error reading reply for outside SET in single-conn write\n";
+                    std::cerr << "Error reading reply for SET in single-conn write\n";
                 if (r) freeReplyObject(r);
             }
             {
@@ -305,15 +301,13 @@ int main(int argc, char* argv[]) {
         std::cout << "Data validation (normal keys) completed.\n";
     }
 
-    // Final verification: Instead of verifying a counter key, send an INFO command and print its output.
+    // Final verification: send an INFO command (do not print its output).
     redisContext* conn = connectRedis(host, port);
     redisReply* reply = (redisReply*)redisCommand(conn, "INFO");
-    if (reply && reply->type == REDIS_REPLY_STRING && reply->str) {
-        std::cout << "Redis INFO output:\n" << reply->str << "\n";
-    } else {
-        std::cerr << "ERROR: Could not fetch Redis INFO.\n";
+    if (reply) {
+        freeReplyObject(reply);
     }
-    if (reply) freeReplyObject(reply);
     redisFree(conn);
+
     return 0;
 }
