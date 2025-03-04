@@ -2,7 +2,11 @@
 
 ## short expanation about the execution files in this repo
 1. dataIntegrityPipelinedWithMultiExec.cpp
-   1. performs X SET/GET commands in pipeline + MULTI/INCR/EXEC sequance in the end of the pipeline
+   * performs X SET/GET commands in pipeline + MULTI/INCR/EXEC sequance in the end of the pipeline
+2. dataIntegrityPipelinedWithINFO.cpp
+   * performs X SET/GET commands in pipeline + BLPOP sequance in the end of the pipeline
+3. dataIntegrityPipelinedWithINFO.cpp
+   * performs X SET/GET commands in pipeline + BLPOP sequance in the end of the pipeline
 
 ## Architectural Overview
 
