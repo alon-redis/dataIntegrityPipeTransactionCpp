@@ -54,10 +54,16 @@ This C++ application represents a sophisticated Redis client implementation desi
 
 ## Compilation Prerequisites
 
-### Dependencies
-- C++11 or later compiler with thread support
-- HiRedis library (libhiredis-dev)
-- Compilation Flags: `-std=c++11 -pthread -lhiredis`
+## Dependencies
+- C++11 or higher compiler support
+- hiredis library (Redis C client)
+- Standard Template Library (STL)
+
+## Prerequisites
+```bash
+sudo apt-get update
+sudo apt-get install libhiredis-dev g++
+```
 
 ### Recommended Compilation
 ```bash
