@@ -1,4 +1,4 @@
-# Redis Pipelining Concurrency Benchmark Utility
+# Redis Pipelining (normal + transaction) Concurrency Benchmark Utility
 
 ## Architectural Overview
 
