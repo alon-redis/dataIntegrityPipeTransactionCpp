@@ -1,7 +1,8 @@
 # Redis Pipelining (normal + transaction) Concurrency Benchmark Utility
 
-###
-dataIntegrityPipelinedWithMultiExec.cpp performs X SET/GET commands in pipeline + MULTI/INCR/EXEC sequance in the end of the pipeline
+## short expanation about the execution files in this repo
+1. dataIntegrityPipelinedWithMultiExec.cpp
+   1. performs X SET/GET commands in pipeline + MULTI/INCR/EXEC sequance in the end of the pipeline
 
 ## Architectural Overview
 
