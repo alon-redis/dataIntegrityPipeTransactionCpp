@@ -43,7 +43,7 @@ This C++ application represents a sophisticated Redis client implementation desi
 ## Usage Syntax
 
 ```bash
-./redis_pipeline_benchmark <redis_host:port> <pipeline_depth> <num_connections> <iterations>
+./dataIntegrityPipelinedWithMultiExec <redis_host:port> <pipeline_depth> <num_connections> <iterations>
 ```
 
 ### Parameters
@@ -67,7 +67,7 @@ sudo apt-get install libhiredis-dev g++
 
 ### Recommended Compilation
 ```bash
-g++ -std=c++11 -O3 redis_pipeline_benchmark.cpp -o redis_pipeline_benchmark -pthread -lhiredis
+g++ -std=c++11 -O3 dataIntegrityPipelinedWithMultiExec.cpp -o dataIntegrityPipelinedWithMultiExec -pthread -lhiredis
 ```
 
 ## Benchmark Validation Mechanisms
