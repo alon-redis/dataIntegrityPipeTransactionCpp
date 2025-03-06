@@ -74,9 +74,8 @@ redisContext* connectRedis(const std::string& host, int port) {
  * For each iteration:
  *   (1) Send a batch of SET commands for normal keys.
  *   (2) Append a random command from /tmp/cmd.txt.
- *   (3) Append a BLPOP command with timeout 0.001.
- *   (4) Read all replies (pipelineDepth replies for SET, one for the random command, one for BLPOP).
- *   (5) Save the normal keys (and their expected values) in globalData.
+ *   (3) Read all replies (pipelineDepth replies for SET, one for the random command).
+ *   (4) Save the normal keys (and their expected values) in globalData.
  */
 void writerThreadFunction(const std::string& host, int port,
                           int pipelineDepth, int iterations, int threadId)
@@ -104,17 +103,15 @@ void writerThreadFunction(const std::string& host, int port,
 
         // (2) Append a random command from /tmp/cmd.txt.
         std::string randomCmd = getRandomCommandFromFile();
+        std::cout << "[Writer " << threadId << "] Random command: " << randomCmd << std::endl;
         redisAppendCommand(conn, randomCmd.c_str());
 
-        // (3) Append a BLPOP command with timeout 0.001.
-        redisAppendCommand(conn, "BLPOP list1 0.001");
-
-        // (4) Read pipeline replies.
+        // (3) Read pipeline replies.
         // a) Read SET command replies.
         for (int i = 0; i < pipelineDepth; i++) {
             redisReply* r = nullptr;
             if (redisGetReply(conn, (void**)&r) != REDIS_OK) {
-                std::cout << "Error reading reply for SET command\n";
+                std::cout << "[Writer " << threadId << "] Error reading reply for SET command\n";
             }
             if (r) freeReplyObject(r);
         }
@@ -122,20 +119,12 @@ void writerThreadFunction(const std::string& host, int port,
         {
             redisReply* randomReply = nullptr;
             if (redisGetReply(conn, (void**)&randomReply) != REDIS_OK) {
-                std::cout << "Error reading random command reply\n";
+                std::cout << "[Writer " << threadId << "] Error reading random command reply\n";
             }
             if (randomReply) freeReplyObject(randomReply);
         }
-        // c) Read BLPOP reply.
-        {
-            redisReply* blpopReply = nullptr;
-            if (redisGetReply(conn, (void**)&blpopReply) != REDIS_OK) {
-                std::cout << "Error reading BLPOP reply\n";
-            }
-            if (blpopReply) freeReplyObject(blpopReply);
-        }
 
-        // (5) Save the normal keys for later verification.
+        // (4) Save the normal keys for later verification.
         {
             std::lock_guard<std::mutex> lock(globalDataMutex);
             for (int i = 0; i < pipelineDepth; i++) {
@@ -169,11 +158,11 @@ void readerThreadFunction(const std::string& host, int port,
         for (size_t i = 0; i < batchSize; i++) {
             redisReply* r = nullptr;
             if (redisGetReply(conn, (void**)&r) != REDIS_OK)
-                std::cout << "Error reading GET reply in reader\n";
+                std::cout << "[Reader " << threadId << "] Error reading GET reply\n";
             if (r) {
                 std::string value = (r->type == REDIS_REPLY_STRING && r->str) ? r->str : "";
                 if (value != keysToRead[index + i].value) {
-                    std::cout << "[Reader] Data mismatch for key=" << keysToRead[index + i].key
+                    std::cout << "[Reader " << threadId << "] Data mismatch for key=" << keysToRead[index + i].key
                               << ", expected=" << keysToRead[index + i].value
                               << ", got=" << value << "\n";
                 }
@@ -214,27 +203,20 @@ void singleConnectionFunction(const std::string& host, int port,
             }
             // Instead of sending a fixed INFO, send a random command from /tmp/cmd.txt.
             std::string randomCmd = getRandomCommandFromFile();
+            std::cout << "[SingleConn] Random command: " << randomCmd << std::endl;
             redisAppendCommand(conn, randomCmd.c_str());
-            // Then send BLPOP with timeout 0.001.
-            redisAppendCommand(conn, "BLPOP list1 0.001");
             // Read replies.
             for (int i = 0; i < pipelineDepth; i++) {
                 redisReply* r = nullptr;
                 if (redisGetReply(conn, (void**)&r) != REDIS_OK)
-                    std::cout << "Error reading reply for SET in single-conn write\n";
+                    std::cout << "[SingleConn] Error reading reply for SET\n";
                 if (r) freeReplyObject(r);
             }
             {
                 redisReply* randomReply = nullptr;
                 if (redisGetReply(conn, (void**)&randomReply) != REDIS_OK)
-                    std::cout << "Error reading random command reply in single-conn write\n";
+                    std::cout << "[SingleConn] Error reading random command reply\n";
                 if (randomReply) freeReplyObject(randomReply);
-            }
-            {
-                redisReply* blpopReply = nullptr;
-                if (redisGetReply(conn, (void**)&blpopReply) != REDIS_OK)
-                    std::cout << "Error reading BLPOP reply in single-conn write\n";
-                if (blpopReply) freeReplyObject(blpopReply);
             }
             {
                 std::lock_guard<std::mutex> lock(globalDataMutex);
@@ -263,7 +245,7 @@ void singleConnectionFunction(const std::string& host, int port,
             for (size_t i = 0; i < batchSize; i++) {
                 redisReply* r = nullptr;
                 if (redisGetReply(conn, (void**)&r) != REDIS_OK)
-                    std::cout << "Error reading GET reply in single-conn read\n";
+                    std::cout << "[SingleConn] Error reading GET reply in read phase\n";
                 if (r) {
                     std::string value = (r->type == REDIS_REPLY_STRING && r->str) ? r->str : "";
                     if (value != localData[index + i].value) {
@@ -348,21 +330,15 @@ int main(int argc, char* argv[]) {
         std::cout << "Data validation (normal keys) completed.\n";
     }
 
-    // Final verification: send a random command (from /tmp/cmd.txt) and a BLPOP command as part of the pipeline.
+    // Final verification: send a random command (from /tmp/cmd.txt) as part of the pipeline.
     redisContext* conn = connectRedis(host, port);
     std::string finalCmd = getRandomCommandFromFile();
+    std::cout << "[Final] Random command: " << finalCmd << std::endl;
     redisAppendCommand(conn, finalCmd.c_str());
-    redisAppendCommand(conn, "BLPOP list1 0.001");
     {
         redisReply* r = nullptr;
         if (redisGetReply(conn, (void**)&r) != REDIS_OK)
-            std::cout << "Error reading final random command reply\n";
-        if (r) freeReplyObject(r);
-    }
-    {
-        redisReply* r = nullptr;
-        if (redisGetReply(conn, (void**)&r) != REDIS_OK)
-            std::cout << "Error reading final BLPOP reply\n";
+            std::cout << "[Final] Error reading final random command reply\n";
         if (r) freeReplyObject(r);
     }
     redisFree(conn);
