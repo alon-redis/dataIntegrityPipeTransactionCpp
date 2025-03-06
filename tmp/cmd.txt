@@ -1,0 +1,554 @@
+DEL key 
+DEL key1{1} key2{1} key3{1} key1{1} key4{1}
+DUMP keyDump
+EXISTS keyExists
+EXPIRE keyExpire 5
+EXPIREAT keyExpireAt 5 
+KEYS key*
+MIGRATE 127.0.0.1 6379 keyMigrate 3 3
+MOVE keyMove0 5555
+lpush mylist "Hello World"
+object refcount mylist
+object encoding mylist
+object idletime mylist
+PERSIST keyPersist
+PEXPIRE keyPexpire 123
+PEXPIREAT keyPexpireat 213423
+PTTL keyPttl
+RANDOMKEY
+config set notify-keyspace-events KEA
+config set notify-keyspace-events K
+config set notify-keyspace-events 
+config set notify-keyspace-events 897235
+config set notify-keyspace-events xdzxx
+RENAME keyOld newkey
+RENAMENX keyOldname newkeyname
+RESTORE mykey 0 "\n\x17\x17\x00\x00\x00\x12\x00\x00\x00\x03\x00\x00\xc0\x01\x00\x04\xc0\x02\x00\x04\xc0\x03\x00\xff\x04\x00u#<\xc0;.\xe9\xdd"
+SORT mylist BY weight_*->fieldname GET object_*->fieldname
+SORT mylist BY weight_* STORE resultkey
+SORT mylist BY weight_* GET object_* GET #
+SORT mylist BY weight_* GET object_*
+SORT mylist DESC
+SORT mylist ALPHA
+TTL keyTtl
+TYPE keyType
+sscan myset 0 match f*
+sadd myset 1 2 3 foo foobar feelsgood
+scan 176 MATCH *11* COUNT 1000
+hmset hash name Jack age 33
+hscan hash 0
+APPEND keyAppend value
+BITCOUNT keyBit 20 500
+set mykey2 1
+set mykey1 1
+bitop and myresult mykey1 mykey2
+DECR keyDecr
+DECRBY keyDecr 5
+GET keyGet
+GETBIT keyGetbit 4
+GETRANGE keyRange 0 -1
+GETSET keyGetSet valueeeeeeeeeeeeeeeeeeeeeee
+INCR keyIncr
+INCRBY keyIncrby 2897345
+INCRBYFLOAT keyIncrbyfloat 342857984257
+MGET key1
+MGET key1{1} key2{1} key3{1} key{1}
+MSET key value 
+MSET key1{1} v1 k2{1} v2 k3{1} v3
+MSETNX key2 "there" key3 "world"
+PSETEX mykey 1000 "Hello"
+set alon 2312 ex 5 px 1000 XX
+set alon 2312 ex 5 px 1000 NX
+set alon 2312 ex 5 px 1000 NX XX
+SETBIT keySetbit 3 value
+SETEX keySetex 3 value
+SETNX keySetnx value
+SETRANGE keySetrange 5 value
+STRLEN keyStrlen
+HDEL keyHdel field
+HDEL keyHdel field field2 field3field3 field3 field4 field5
+HEXISTS keyHexists field347598734985
+HGET keyHget field
+HGETALL keyHgetall
+HINCRBY key field 234234
+HINCRBYFLOAT key field 2734987
+HKEYS myHash
+HLEN myHash
+HMGET myhash field1 field2 nofield
+HMSET myhash field1 "Hello" field2 "World"
+HSET key field value
+HSETNX key field value
+HVALS key
+hscan hash 0
+hscan 176 MATCH *11* COUNT 1000
+BLPOP key 1
+BRPOP key 1
+BLPOP key1{1} key2{1} key3{1} 1
+BRPOP key1{1} key2{1} key3{1} 1
+BRPOPLPUSH source destination 1
+LINDEX key index
+LINSERT mylist BEFORE "World" "There"
+LLEN key
+LPOP key
+LPUSH key value
+LPUSH mylist "hello" value2 value3
+LPUSHX key value
+LRANGE key 5 10
+LREM mylist -2 "hello"
+LSET mylist -2 "five"
+LTRIM key 2 30
+RPOP key
+RPOPLPUSH source destination
+RPOPLPUSH mylist myotherlist
+RPUSH key value
+RPUSH key value v2 v3 v4
+RPUSHX key value
+SADD key member
+SADD key member m1 m2 m3 m4 m5 m6
+SCARD key
+SDIFF key{1} key1{1}
+SDIFF key{1} key1{1} k2{1} k3{1} k4{1}
+SDIFF key key1 k2 k3 k4{1} destKey{1}
+SINTER key
+SINTER k1 k2{1} k3 k4{1}
+SINTERSTORE destination{1} key{1}
+SINTERSTORE destination{1} key{1} k3458{1} k9328{1}74 k892345{1}7
+SISMEMBER key member
+SMEMBERS key
+SMOVE source destination 9834275
+SPOP key
+SRANDMEMBER key -5
+SREM key member
+SUNION key
+SUNIONSTORE destination{1} key{1}
+ZADD myzset 1 "one"
+ZCARD key
+ZCOUNT key min max
+ZINCRBY key 5 member
+ZINTERSTORE out 2 zset1 zset2 WEIGHTS 2 3
+ZRANGE myzset 0 -1
+ZRANGEBYSCORE myzset -inf +inf
+ZRANGEBYSCORE myzset (1 2
+ZRANK key member
+ZREM key member
+ZREMRANGEBYRANK myzset 0 1
+ZREMRANGEBYSCORE key min max
+ZREVRANGE myzset 0 -1 WITHSCORES
+ZREVRANGEBYSCORE myzset +inf -inf WITHSCORES -3
+ZREVRANK key member
+ZSCORE key member
+ZUNIONSTORE out 2 zset1 zset2 WEIGHTS 2 3
+ZUNIONSTORE out 2 zset1 zset2 WEIGHTS 2 3 AGGREGATE SUM
+ZSCAN zset 0 all* 5
+PSUBSCRIBE pattern
+PSUBSCRIBE 
+PSUBSCRIBE pattern* p1 p2* p3*
+PUBSUB subcommand [argument [argument ...]]
+PUBLISH channel message
+PUNSUBSCRIBE pattern
+PUNSUBSCRIBE pattern pattern2 pattern3 pattern4
+PUNSUBSCRIBE
+SUBSCRIBE channel
+SUBSCRIBE
+SUBSCRIBE channel channel2 channel3
+UNSUBSCRIBE channel
+DISCARD
+UNWATCH
+WATCH key
+WATCH key{1} key1{1} key2{1}
+eval "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 key1 key2 first second
+evalsha 6b1bf486c81ceb7edf3c093f4c48582e38c0e791 0
+SCRIPT LOAD "return 1"
+SCRIPT EXISTS e0e1f9fabfc9d4800c877a703b823ac0578ff8db 
+SCRIPT FLUSH
+SCRIPT KILL
+AUTH password
+ECHO message
+PING
+QUIT
+SELECT 1
+SELECT 37459734597
+BGREWRITEAOF
+BGSAVE
+CLIENT KILL 127.0.0.1:123
+CLIENT LIST
+CLIENT GETNAME
+CLIENT SETNAME connection-name
+CONFIG GET *
+config get *max-*-entries*
+CONFIG REWRITE
+CONFIG SET save "900 1 300"
+CONFIG SET "save 900 1 300"
+CONFIG SET loglevel debug
+config set notify-keyspace-events KEA
+config set hash-max-ziplist-entries 500
+CONFIG RESETSTAT
+DBSIZE
+DEBUG OBJECT key
+DEBUG SEGFAULT
+DEBUG POPULATE
+DEBUG HELP
+DEBUG ASSERT 0
+DEBUG LOG
+SCRIPT DEBUG yes
+SCRIPT DEBUG no
+SCRIPT DEBUG sync
+FLUSHDBBBBB
+INFO
+INFO server
+INFO commandstats
+LASTSAVE
+SAVE
+SHUTDOWN NOSAVE
+SHUTDOWN SAVE
+SLAVEOF 127.0.0.1 6379
+SLOWLOG GET 10
+SLOWLOG reset
+SYNC
+TIME
+SPING
+DPING
+INFO all
+ZRANGEBYLEX myzset - [c
+ZRANGEBYLEX myzset [aaa (g
+ZRANGE myzset 0 -1
+ZREMRANGEBYLEX myzset [alpha [omega
+ZADD myzset 0 foo 0 zap 0 zip 0 ALPHA 0 alpha
+ZLEXCOUNT myzset [b [f
+ZLEXCOUNT myzset - +
+PFADD hll2 a b c foo
+PFMERGE hll3 hll1 hll2
+PFCOUNT hll3
+GEOADD Sicily 13.361389 38.115556 "Palermo" 15.087269
+GEODIST Sicily Palermo Catania
+GEORADIUS Sicily 15 37 100 km
+GEOADD Sicily 13.361389 38.115556 "Palermo" 15.087269 37.502669
+GEODIST Sicily Foo Bar
+GEODIST Sicily Palermo Catania mi
+GEODIST Sicily Palermo Catania ft
+GEODIST Sicily Palermo Catania kg
+GEODIST Sicily Palermo Catania m
+GEOADD Sicily 13.361389 38.115556 "Palermo" 15.087269 37.502669 "Catania"
+GEOHASH Sicily Palermo Catania
+GEOPOS Sicily Palermo Catania NonExisting
+GEORADIUS Sicily 15 37 200 km WITHDIST
+GEORADIUS Sicily 15 37 200 km WITHCOORD
+GEORADIUS Sicily 15 37 200 km WITHDIST WITHCOORD
+GEOADD Sicily 13.583333 37.316667 "Agrigento"
+GEOADD Sicily 13.361389 38.115556 "Palermo" 15.087269 37.502669 "Catania"
+GEORADIUSBYMEMBER Sicily Agrigento 100 km
+GEORADIUS Sicily 15 37 0.2200 km WITHDIST WITHCOORD
+GEORADIUS Sicily 15 37 200 km WITHDIST WITHCOORD WITHDIST
+GEORADIUS Sicily 15 3788888888888888888888888888888888888888888888888888888 200 km WITHCOORD
+GEOADD Sicily 13.361389 38.115556 "Palermo" 15.087269 37.5026699999999999999999999999999999999999999999 "Catania"
+GEOADD Sicily 13.361389 38.115556 "Palermo" 15.087269 -37.502669 "Catania"
+GEOADD Sicily 13.361389 38.115556 "Palermo" 1555555555555555555555555555555555555555555555555555555555555555555555555555.087269 37.502669 "Catania"
+GEOADD Sicily 13.361389 3E8.115556 "Palermo" 15.087269 37.502669 "Catania"
+GEORADIUSBYMEMBER Sicily Agrigento 100 ft
+GEODIST
+PFADD hll a b c d e f g
+PFADD hll a b c d e f gtttttttttttttttttttttttttttttttttttttttttttttttttttttt
+PFCOUNT hll
+PFADD hll foo bar zap
+PFCOUNT hll
+PFCOUNT hll some-other-hll
+PFMERGE hll3 hll1 hll2
+PFMERGE hll3
+XADD mystream * name Sara surname OConnor
+XADD mystream * field1 value1 field2 value2 field3 value3
+XLEN mystream
+XRANGE mystream - +
+XADD mystream * item 3 ? item 4
+XADD mystream * item 3 item 4
+XGROUP CREATE mystream group55 0-0
+XREADGROUP GROUP group55 consumer-123 COUNT 1 STREAMS mystream >
+XPENDING mystream group55 - + 10
+XPENDING mystream group55
+XPENDING mystream group55 - + 10 consumer-123
+XADD writers * name Virginia surname Woolf
+XADD writers * name Jane surname Austen
+XADD writers * name Toni surname Morris
+XADD writers * name Agatha surname Christie
+XADD writers * name Ngozi surname Adichie
+XLEN writers
+XRANGE writers - + COUNT 2
+XREAD COUNT 2 STREAMS mystream writers 1526999352406-0 1526985685298-0
+XREAD COUNT 2 STREAMS mystream writers 0-0 0-0
+XREAD BLOCK 5000 COUNT 100 STREAMS mystream $
+XREAD BLOCK 5000 COUNT 100 STREAMS mystream 1526999644174-3
+XREVRANGE writers 1526985712946-18446744073709551615 - COUNT 2
+XREVRANGE writers + - COUNT 1
+ZPOPMAX myzset
+ZPOPMIN myzset
+BZPOPMIN zset1 zset2 0
+BZPOPMAX zset1 zset2 0
+BZPOPMIN zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 0
+BZPOPMIN zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1
+BZPOPMIN zset1 zset2 1
+BZPOPMIN zset1 zset2 2.5
+auth alon alon
+acl setuser alon on ~* +@string >alon
+acl setuser alon on ~* +@string +@admin -@hash>alon
+acl whoami
+acl list
+acl cat
+acl cat hash string
+acl cal hash
+acl save
+acl help
+acl genpass
+acl cat string
+auth alon alonsdjhfksdhfkjshdfkhsd
+auth alon alonsdfjlksdjf sdlfjsdlfjio32mwelkfsdjkj
+acl getuser alon
+acl deluser alon
+acl
+auth alon
+auth alon !@#$%^&*()_+=-
+acl load
+acl save /tmp/acl.log
+acl log
+
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+set "" ""
+set "" "" PX 1 XX
+ZRANGE dstzset 0 -1
+ZADD srczset 1 "one" 2 "two" 3 "three" 4 "four"
+ZRANGESTORE dstzset srczset 2 -1
+ZRANGE dstzset 0 -1
+ZRANGESTORE dstzset srczset 2 -1 BYSCORE REV
+ZDIFFSTORE out 2 zset1 zset2
+FUNCTION LOAD Lua mylib "redis.register_function('myfunc', function(keys, args) return args[1] end)"
+FCALL myfunc 0 hello
+FCALL myfunc 0
+FCALL myfunc 20 hello
+FUNCTION HELP
+FCALL_RO myfunc 0 hello
+FUNCTION DELETE mylib
+FUNCTION DELETE
+FUNCTION FLUSH ASYNC
+FUNCTION FLUSH SYNC
+FUNCTION KILL
+FUNCTION DUMP
+FUNCTION LIST
+FUNCTION LIS
+FUNCTION STATS
+PUBSUB SHARDNUMSUB orders
+PUBSUB SHARDNUMSU orders
+PUBSUB SHARDCHANNELS o*
+PUBSUB SHARDCHANNELS
+PUBSUB SHARDCHANNELS o* *
+SPUBLISH channel message
+SPUBLISH channel
+SPUBLISH channel message message1 message2
+SUNSUBSCRIBE channel channel1 channel2 channel3 channel channel4 channel5
+SUNSUBSCRIBE channel channel1 channel2 channel3 channel *
+SSUBSCRIBE shardchannel1 shardchannel2
+SSUBSCRIBE shardchannel1
+SSUBSCRIBE
+
+CLUSTER SHARDS
+CLUSTER SHARD
+CLUSTER SHARDS 34
+CLUSTER LINKS
+CLUSTER DELSLOTS 1 2 3 4 5
+CLUSTER DELSLOTS 1 2 3 4 AA
+COMMAND DOC
+LMPOP 2 non1{1} non2{1} LEFT COUNT 10
+ZINTERCARD 2 zset1{1} zset2{1} LIMIT 1
+ZMPOP 2 myzset{1} myzset2{1} MIN COUNT 10
+PEXPIREAT mykey 33177117420000
+PEXPIREAT mykey 33177117420000AAA
+PEXPIREAT mykey 0
+SINTERCARD 2 key1{1} key2{1} LIMIT 1
+SINTERCARD 2 key1{1} key2{1} LIMIT X
+SINTERCARD 2 key1{1} key2{1} key3{1} LIMIT 1
+LATENCY HISTOGRAM
+CLIENT NO-EVICT ON
+SHUTDOWN SAVE ABORT
+SHUTDOWN NOSAVE FORCE
+SORT_RO mylist BY weight_*->fieldname GET object_*->fieldname
+Hello 2
+Hello 2
+Hello 3
+Hello 3
+Hello 2
+Hello 2
+Hello
+hello 46234
+hello 72634876234862387462387462386487432
+hello gasd
+
+BF.ADD bf item1
+BF.EXISTS bf item1
+BF.INFO bf
+BF.INSERT filter ITEMS foo bar baz
+BF.INSERT filter NOCREATE ITEMS foo bar
+BF.MADD bf item1{1} item2{1}
+BF.MEXISTS bf item1 item_new
+BF.RESERVE bf 0.01 1000
+BF.RESERVE bf_exp 1000 NONSCALING
+BF.LOADCHUNK bf 1 "\x01\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x05\x00\x00\x00\x02\x00\x00\x00\b\x00\x00\x00\x00\x00\x00\x00@\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xa9?J\xf7\xd4\x9e\xde\xf0\x18@\x05\x00\x00\x00\n\x00\x00\x00\x00\x00\x00\x00\x00"
+CF.ADD cf item
+CF.COUNT cf item1
+CF.INFO cf
+CF.INSERT cf1 CAPACITY 1000 NOCREATE ITEMS item1 item2
+CF.RESERVE cf_params 1000 BUCKETSIZE 8 MAXITERATIONS 20 EXPANSION 2
+CF.DEL cf1 item_new
+CF.LOADCHUNK cf 9 "\x00\x00\x00\x00\a\x00\x00\x00"
+GRAPH.CONFIG SET RESULTSET_SIZE 1000
+GRAPH.CONFIG SET RESULTSET_SIZE 100000000000000000000000000000
+GRAPH.CONFIG SET RESULTSET_SIZE AAAA
+GRAPH.CONFIG GET RESULTSET_SIZE
+GRAPH.EXPLAIN us_government "MATCH (p:President)-[:BORN]->(h:State {name:'Hawaii'}) RETURN p"
+GRAPH.DELETE us_government
+GRAPH.QUERY DEMO_GRAPH "MATCH (x:Y {propname: propvalue}) DELETE x"
+GRAPH.LIST
+GRAPH.PROFILE us_government
+GRAPH.SLOWLOG us_government
+GRAPH.RO_QUERY us_government "MATCH (p:president)-[:born]->(:state {name:'Hawaii'}) RETURN p"
+GRAPH.DELETE *
+JSON.SET doc $ '{"a":[1], "nested": {"a": [1,2]}, "nested2": {"a": 42}}'
+JSON.SET doc $ '{"a":[1,2,3,2, "nested": {"a": [3,4]}}'
+JSON.ARRAPPEND doc $..a 3 4
+JSON.GET doc $
+JSON.ARRINDEX doc $..a 2
+JSON.ARRLEN doc $..a
+JSON.ARRPOP doc $..a
+JSON.CLEAR doc $.*
+JSON.DEL doc $..a
+JSON.DEL doc $.*
+JSON.MGET doc1 doc2 $..a
+JSON.NUMINCRBY doc $..a 2
+JSON.OBJLEN doc $..a
+JSON.OBJLEN doc *
+JSON.NUMMULTBY doc $..a
+JSON.TOGGLE doc $.bool
+JSON.TYPE doc $..a
+FT.AGGREGATE idx "@url:\"about.html\""
+FT.AGGREGATE gh "*" GROUPBY 1 @actor REDUCE COUNT 0 AS num SORTBY 2 @num DESC MAX 10
+FT.ALIASADD alias idx
+FT.ALIASDEL alias
+FT.ALIASADD alias idx
+FT.CONFIG GET TIMEOUT
+FT.CONFIG SET TIMEOUT 42
+FT.CONFIG SET TIMEOUT AAAAA
+FT.CONFIG SET TIMEOUT 427249586294568347658723647823648236487
+FT.CREATE idx ON HASH PREFIX 1 blog:post: SCHEMA title TEXT SORTABLE published_at NUMERIC SORTABLE category TAG SORTABLE
+FT.CREATE author-books-idx ON HASH PREFIX 2 author:details: book:details: SCHEMA author_id TAG SORTABLE author_ids TAG title TEXT name TEXT
+FT.DICTDUMP dict
+FT.CURSOR DEL idx 342459320
+FT.DICTADD dict foo bar "hello world"
+FT.DROPINDEX idx DD
+ft.info idx
+FT.EXPLAIN rd "(foo bar)|(hello world) @date:[100 200]|@date:[500 +inf]"
+FT.SEARCH books-idx "wizard"
+FT.SEARCH books-idx "@title:space @categories:{science}"
+FT.SEARCH books-idx "*=>[KNN 10 @title_embedding $query_vec AS title_score]" PARAMS 2 query_vec <"Planet Earth" embedding BLOB> SORTBY title_score
+FT.CURSOR READ idx 342459320 COUNT 50273648723648723648236498
+FT.EXPLAINCLI rd "(foo bar)|(hello world) @date:[100 200]|@date:[500 +inf]"
+FT.SYNUPDATE idx synonym SKIPINITIALSCAN hello hi shalom
+TS.ADD temperature:2:32 1548149180000 26 LABELS sensor_id 2 area_id 32
+TS.CREATE temperature:2:32 RETENTION 60000 DUPLICATE_POLICY MAX LABELS sensor_id 2 area_id 32
+TS.GET temperature:2:32
+TS.QUERYINDEX sensor_id=2
+TS.RANGE temperature:3:32 1548149180000 1548149210000 AGGREGATION avg 5000
+TS.MADD temperature:2:32 1548149180000 26 cpu:2:32 1548149183000 54
+TS.MRANGE 1548149180000 1548149210000 AGGREGATION avg 5000 FILTER area_id=32 sensor_id!=1
+TS.QUERYINDEX sensor_id=2
+
+"FT.CREATE" "idx:books" "ON" "JSON" "PREFIX" "1" "alon:shmuely:redis:data:store:application:" "SCORE" "1.0" "SCHEMA" "$.author" "AS" "author" "TEXT" "WEIGHT" "1.0" "SORTABLE" "$.id" "AS" "id" "TAG" "SEPARATOR" "," "$.description" "AS" "description" "TEXT" "WEIGHT" "1.0" "$.editions[*]" "AS" "editions" "TAG" "SEPARATOR" "," "$.genres[*]" "AS" "genres" "TAG" "SEPARATOR" "," "$.pages" "AS" "pages" "NUMERIC" "SORTABLE" "$.title" "AS" "title" "TEXT" "WEIGHT" "1.0" "SORTABLE" "$.year_published" "AS" "year_published" "NUMERIC" "$.metrics.rating_votes" "AS" "rating_votes" "NUMERIC" "SORTABLE" "$.metrics.score" "AS" "score" "NUMERIC" "SORTABLE" "$.inventory[*].status" "AS" "status" "TAG" "SEPARATOR" "," "$.inventory[*].stock_id" "AS" "stock_id" "TAG" "SEPARATOR" "," "$.format" "AS" "format" "TAG" "SEPARATOR" "," "$.is_available" "AS" "is_available" "TAG" "SEPARATOR" "," "$.price" "AS" "price" "NUMERIC" "SORTABLE" "$.isbn" "AS" "isbn" "TAG" "SEPARATOR" "," "$.weight_grams" "AS" "weight_grams" "NUMERIC" "SORTABLE" "$.dimensions.width_cm" "AS" "width_cm" "NUMERIC" "SORTABLE" "$.dimensions.height_cm" "AS" "height_cm" "NUMERIC" "SORTABLE" "$.dimensions.depth_cm" "AS" "depth_cm" "NUMERIC" "SORTABLE"
+"JSON.SET" "alon:shmuely:redis:data:store:application:0" "." "{\"author\": \"Alon Shmuely\", \"id\": \"0\", \"description\": \"Kind pass three talk western. Hit low age unit not same fall everybody. Long garden wind well. Condition whatever usually what American require. Admit Republican test event. Note majority fear series lay machine speak. Ask religious yet attack itself personal president. List news magazine heart painting. Research practice want interesting for sell. Sure friend second three. Occur paper attorney. Do type piece team data want develop. Surface high cause decide kind toward garden. Work news and learn people either green personal. Season material knowledge remember board. Whole generation conference record fall. Both player bad everything under. Than describe strong form card. Church factor top staff purpose possible admit. Participant hot memory room great whose above place. Suffer pay enjoy side create gun. Task often story just police ball raise. Today home send physical note. Life success outside least page his help. Morning power big service heavy. Decade health population so own newspaper rest. Stay establish raise draw mean. Tv whatever here subject through manager clear. Believe which guess assume same nation. Road American to name market. Get interesting herself scientist town. Middle order wonder establish. Successful quality body power soldier simple. Ahead animal behavior third. Get month crime within standard space challenge fish. Air stand administration strategy. Put loss indicate without that. Heart serious buy. Word bar against high business even. Less of walk teach within she. Ago pick have themselves. Also newspaper employee available able. Organization Democrat name reveal chair read. Too behind alone drug son. During rate total beautiful so under in. Question machine will democratic. Room teach him energy together move. Cultural stay article. Indicate food himself here remember floor. Believe image community. Apply ask report everybody network medical college. Back left leader. Enough operation second form take person. Evening choose authority sit behind suddenly. Site still idea environment customer in dream. Seem crime increase look task success opportunity. Forward stage around shoulder operation goal. Standard stock car response argue military plan scene. Way if word. Reduce hand message believe head clearly. Nation score remember those service.\", \"editions\": [\"russian\", \"italian\", \"chinese\", \"japanese\"], \"genres\": [\"mystery\"], \"inventory\": [{\"status\": \"available\", \"stock_id\": \"0_0\"}, {\"status\": \"maintenance\", \"stock_id\": \"0_1\"}, {\"status\": \"available\", \"stock_id\": \"0_2\"}, {\"status\": \"available\", \"stock_id\": \"0_3\"}, {\"status\": \"available\", \"stock_id\": \"0_4\"}, {\"status\": \"on_loan\", \"stock_id\": \"0_5\"}], \"metrics\": {\"rating_votes\": 815, \"score\": 2.58}, \"pages\": 488, \"title\": \"QA architect\", \"url\": \"https://www.long.net/\", \"year_published\": 1935, \"format\": \"paperback\", \"is_available\": true, \"price\": 8.85, \"isbn\": \"978-0-337-81892-9\", \"address\": \"98765 Ein Dor Apt. 0001 Rishon Lezion, IL 1948\", \"weight_grams\": 691, \"dimensions\": {\"width_cm\": 16.5, \"height_cm\": 30.27, \"depth_cm\": 5.81}}"
+"FT.SEARCH" "idx:books" "Shmuely" "RETURN" "1" "$.title" "LIMIT" "0" "10"
+"FT.ALTER" "idx:books" "SCHEMA" "ADD" "$.address" "AS" "address" "TEXT" "WEIGHT" "1.0"
+"FT.SEARCH" "idx:books" "@address:Dor" "RETURN" "3" "$.description" "AS" "author" "LIMIT" "0" "10"
+"FT.AGGREGATE" "idx:books" "scientist" "SORTBY" "1" "@weight_grams"
+"FT.SEARCH" "idx:books" "*" "SORTBY" "year_published" "DESC" "LIMIT" "0" "500"
+"FT.ALTER" "idx:books" "SCHEMA" "ADD" "$.random_field_198" "AS" "random_field_198" "NUMERIC"
+"DEL" "alon:shmuely:redis:data:store:application:72"
+"FT.SEARCH" "idx:books" "finish" "RETURN" "3" "$.description" "AS" "author" "LIMIT" "0" "10"
+"FT.SEARCH" "idx:books" "@year_published:[1948 1975]" "RETURN" "3" "$.description" "AS" "description" "LIMIT" "0" "10"
+"FT.SEARCH" "idx:books_alias" "green" "RETURN" "1" "$.description" "LIMIT" "0" "10"
+"FT.SEARCH" "idx:books" "place" "FILTER" "rating_votes" "900" "1000" "LIMIT" "0" "10"
+"FT.AGGREGATE" "idx:books" "*" "GROUPBY" "0" "REDUCE" "COUNT" "0" "AS" "total"
+FT._LIST
+FT.ALIASADD alias idx:books
+FT.ALIASDEL alias
+FT.ALIASUPDATE alias idx:books
+FT.CONFIG GET *
+FT.CONFIG GET 
+FT.CONFIG GET _FORK_GC_CLEAN_NUMERIC_EMPTY_NODES
+FT.CONFIG SET CURSOR_MAX_IDLE 300001 
+FT.CURSOR READ idx:books 342459320 COUNT 50
+FT.CURSOR READ idx:books A COUNT 50
+FT.CURSOR READ idx:books 342459320342459320342459320342459320342459320342459320342459320342459320342459320342459320342459320342459320342459320342459320342459320342459320 COUNT 50
+FT.CURSOR DEL idx:books 367485
+FT.CURSOR DEL idx:books 367482736457234687274927965
+FT.CURSOR DEL idx:books 3674AA
+FT.DICTADD dict foo bar "hello world 2687346872grhf87wegsdfiucb872 3879y8 wefg872g87 fgw87tr"
+FT.DICTDEL dict foo bar "hello world"
+FT.DICTDUMP dict
+FT.DROPINDEX index 
+FT.DROPINDEX idx:books 
+FT.DROPINDEX idx:books DD
+FT.EXPLAIN idx:books "(foo bar)|(hello world) @date:[100 200]|@date:[500 +inf]"
+FT.EXPLAINCLI idx:books "(foo bar)|(hello world) @date:[100 200]|@date:[500 +inf]"
+FT.INFO idx:books 
+FT.INFO idx:books Aaaaaaaa idx:books idx:books23
+FT.PROFILE idx:books SEARCH QUERY "Shmuely"
+FT.PROFILE idx:books SEARCH QUERY *
+FT.PROFILE idx:books SEARCH QUERY " "
+FT.PROFILE idx:books SEARCH QUERY "%"
+FT.PROFILE idx:books SEARCH QUERY ""
+FT.SPELLCHECK idx:books Shm DISTANCE 4
+FT.SPELLCHECK idx:books * DISTANCE 4
+FT.SPELLCHECK idx:books ? DISTANCE 4
+FT.SPELLCHECK idx:books a DISTANCE 4
+FT.SPELLCHECK idx:books a DISTANCE 2 DIALECT 3 
+FT.SYNDUMP idx:books
+FT.SYNUPDATE idx:books synonym hello hi shalom
+FT.SYNUPDATE idx:books synonym SKIPINITIALSCAN hello hi shalom
+FT.TAGVALS idx:books title
+"JSON.SET" "alon:shmuely:redis:data:store:application:72" "." "{\"author\": \"Judy Diaz\", \"id\": \"72\", \"description\": \"Network whether huge would walk Democrat one country. Person end property image. Talk executive main result speech quality inside. Unit agree own how project daughter. Less market culture democratic speak speak. Pm move three century improve west. See person management high develop share. Trial magazine experience. With under data five. Mouth include particular cost fact nice training let. Impact avoid section conference method first. Everything shoulder rate front staff. Different individual under subject. Ask concern store window. Sea new heart while receive. Know kitchen its hard while particular need. Still history marriage old fear argue foreign. Story good national hit. Simply identify day security. Politics foot college affect. Protect old whom sign during part imagine. Congress run factor water strong who base. Free rather choose should join threat. Parent race source. Type brother event article. Kid coach former factor way evidence. Out receive drug day choice. National movie color pick. Authority first final experience growth. True area study for future else democratic. Share citizen then else adult find. Information opportunity authority may option age. Director do chance stage. Something long provide Mr message produce affect. Total PM say responsibility participant word career. Major moment soldier when. Blood free down back assume thought bill politics. Travel feel last guess we. House thank someone company. That both partner director already consider. Effort hundred perform pull always box me. Fill later require medical this environment material. Lot avoid teacher. Structure country care several. Discover board recently fund. Ready north bed decide. Produce write foreign candidate much happy. Brother top another medical form economy.\", \"editions\": [\"italian\", \"russian\", \"arabic\", \"german\"], \"genres\": [\"horror\"], \"inventory\": [{\"status\": \"maintenance\", \"stock_id\": \"72_0\"}, {\"status\": \"available\", \"stock_id\": \"72_1\"}, {\"status\": \"on_loan\", \"stock_id\": \"72_2\"}, {\"status\": \"maintenance\", \"stock_id\": \"72_3\"}, {\"status\": \"maintenance\", \"stock_id\": \"72_4\"}, {\"status\": \"available\", \"stock_id\": \"72_5\"}], \"metrics\": {\"rating_votes\": 70, \"score\": 4.12}, \"pages\": 406, \"title\": \"another hundred\", \"url\": \"http://howard.com/\", \"year_published\": 1948, \"format\": \"ebook\", \"is_available\": false, \"price\": 5.33, \"isbn\": \"978-0-16-965643-0\", \"address\": \"102 David Burgs Suite 837\\nNew Garymouth, MN 81797\", \"weight_grams\": 773, \"dimensions\": {\"width_cm\": 22.53, \"height_cm\": 22.87, \"depth_cm\": 5.75}}"
+"JSON.SET" "alon:shmuely:redis:data:store:application:72" "." "{\"author\": \"Judy Shmuely\", \"id\": \"72\", \"description\": \"Network whether huge would walk Democrat one country. Person end property image. Talk executive main result speech quality inside. Unit agree own how project daughter. Less market culture democratic speak. Pm move three century improve west. See person management high develop share. Trial magazine experience. With under data five. Mouth include particular cost fact nice training let. Impact avoid section conference method first. Everything shoulder rate front staff. Different individual under subject. Ask concern store window. Sea new heart while receive. Know kitchen its hard while particular need. Level history marriage old fear argue foreign. Story good national hit. Simply identify day security. Politics foot college affect. Blablabla Out receive drug day choice. National movie color pick. Authority first final experience growth. True area study for future else democratic. Share citizen then else adult find. Information opportunity authority may option age. Director do chance stage. Something long provide Mr message produce affect. Total PM say responsibility participant word career. Major moment soldier when. Blood free down back assume thought bill politics. Travel feel last guess we. House thank someone company. That both partner director already consider. Effort hundred perform pull always box me. Fill later require medical this environment material. Lot avoid teacher. Structure country care several. Discover board recently fund. Ready north bed decide. Produce write foreign candidate much happy. Brother top another medical form economy.\", \"editions\": [\"italian\", \"russian\", \"arabic\", \"german\"], \"genres\": [\"horror\"], \"inventory\": [{\"status\": \"maintenance\", \"stock_id\": \"72_0\"}, {\"status\": \"available\", \"stock_id\": \"72_1\"}, {\"status\": \"on_loan\", \"stock_id\": \"72_2\"}, {\"status\": \"maintenance\", \"stock_id\": \"72_3\"}, {\"status\": \"maintenance\", \"stock_id\": \"72_4\"}, {\"status\": \"available\", \"stock_id\": \"72_5\"}], \"metrics\": {\"rating_votes\": 70, \"score\": 4.12}, \"pages\": 212, \"title\": \"another hundred\", \"url\": \"http://redis.com/\", \"year_published\": 1948, \"format\": \"ebook\", \"is_available\": false, \"price\": 5.44, \"isbn\": \"978-0-22-965643-0\", \"address\": \"102 Sami Burgs Suite 837\\nNew Garymouth, MN 81797\", \"weight_grams\": 773, \"dimensions\": {\"width_cm\": 22.53, \"height_cm\": 44.87, \"depth_cm\": 5.75}}"
+JSON.SET  "alon:shmuely:redis:data:store:application:99" $ '{"title": "Redis in Action", "author": "Dr. Redis Data", "published_year": 2021, "genre": "Technology", "pages": 320, "ratings": {"average": 4.5, "reviews": 150}}'
+JSON.SET "alon:shmuely:redis:data:store:application:99" $ '{"title": "Redis for Beginners", "author": "Jane Doe", "published_year": 2022, "genre": "Education", "pages": 200, "ratings": {"average": 4.8, "reviews": 75}}'
+JSON.SET "alon:shmuely:redis:data:store:application:99" $.ratings.average 4.1
+JSON.GET "alon:shmuely:redis:data:store:application:99" $
+JSON.GET "alon:shmuely:redis:data:store:application:99" $.author
+JSON.GET "alon:shmuely:redis:data:store:application:99" $$
+JSON.GET "alon:shmuely:redis:data:store:application:99" $.....
+JSON.GET "alon:shmuely:redis:data:store:application:99" $.author$
+json.forget "alon:shmuely:redis:data:store:application:99" $.author
+json.forget "alon:shmuely:redis:data:store:application:99" $
+json.forget "alon:shmuely:redis:data:store:application:99" $.
+JSON.DEBUG memory "alon:shmuely:redis:data:store:application:99" $.genre
+JSON.CLEAR "alon:shmuely:redis:data:store:application:99" $.*
+JSON.CLEAR "alon:shmuely:redis:data:store:application:99" $.
+JSON.CLEAR "alon:shmuely:redis:data:store:application:99" $.title
+pexpire "alon:shmuely:redis:data:store:application:99" 1
+dump "alon:shmuely:redis:data:store:application:99"
+restore "alon:shmuely:redis:data:store:application:99" 2 "\a\x81E\xe2R8\xdf\x91,\x03\x05@q{\"title\":\"Redis for Beginners\",\"author\":\"Jane Doe\",\"published_year\":0,\"genre\":\"Education\",\"pages\":0,\"ratings\":{}}\x00\x0b\x00\xefn(=(2\xbce" replace
+restore "alon:shmuely:redis:data:store:application:99" 2 "\a\x81E\xe2R8\xdf\x91,\x03\x05@q{\"title\":\"Redis for Beginners\",\"author\":\"Jane Doe\",\"published_year\":0,\"genre\":\"Education\",\"pages\":0,\"ratings\":{}}\x00\x0b\x00\xefn(=(2\xbce"
+JSON.ARRPOP "alon:shmuely:redis:data:store:application:99" $.[1].max_level 0
+JSON.ARRPOP "alon:shmuely:redis:data:store:application:99" $.[1].max_level 0 85
+JSON.ARRINSERT "alon:shmuely:redis:data:store:application:99" $.[1].max_level 0 85
+JSON.SET "alon:shmuely:redis:data:store:application:99" $ '[{"name":"Healthy headphones","description":"Wireless Bluetooth headphones with noise-cancelling technology","connection":{"wireless":true,"type":"Bluetooth"},"price":99.98,"stock":25,"colors":["black","silver"],"max_level":[60,70,80]},{"name":"Noisy headphones","description":"Wireless Bluetooth headphones with noise-cancelling technology","connection":{"wireless":true,"type":"Bluetooth"},"price":99.98,"stock":25,"colors":["black","silver"],"max_level":[80,90,100,120]}]'
+json.mget "alon:shmuely:redis:data:store:application:99" "alon:shmuely:redis:data:store:application:72" "alon:shmuely:redis:data:store:application:0" $..title
+JSON.ARRTRIM "alon:shmuely:redis:data:store:application:99" $.[1].max_level 4 8
+json.resp "alon:shmuely:redis:data:store:application:99" $
+JSON.STRAPPEND "alon:shmuely:redis:data:store:application:99" "alon" "$.genre"
+JSON.STRAPPEND "alon:shmuely:redis:data:store:application:72" $.author '"BAZBAZ"
+JSON.STRAPPEND "alon:shmuely:redis:data:store:application:72" $.author '"BAZ ?!@#$%^&*()_+=`~::,|. BAZ"'
+JSON.ARRLEN "alon:shmuely:redis:data:store:application:99"
+JSON.MSET "alon:shmuely:redis:data:store:application:99" $ '{"a":2}' "alon:shmuely:redis:data:store:application:72" $.f.a '3' doc3 $ '{"f1": {"a":1}, "f2":{"a":2}}'
+JSON.NUMINCRBY doc3 $..a 587234875628476587234658723465458246587234658763458763248757234658763425862438756284765926592659624597624956924659824659264596243598734985673498756982346598346598
+JSON.NUMINCRBY doc3 $..a 587234875628476587234658723465458246587234658763458763248757234658763425862438756284765926592659624597624956924659824659264596243598734985673498756982346598346598587234875628476587234658723465458246587234658763458763248757234658763425862438756284765926592659624597624956924659824659264596243598734985673498756982346598346
+JSON.NUMMULTBY doc3 $..a 20008726435876245876248756294857908
+JSON.NUMMULTBY doc3 $..a 20008726435876245876248756294857908726435876245876248756294857908
+JSON.NUMMULTBY doc3 $..a -20008726435876245876248756294857908726435876245876248756294857908
+JSON.NUMMULTBY doc3 $..a -0
+JSON.NUMMULTBY doc3 $..a A
+JSON.SET mydeepjson . '{"level1":{"level2":{"level3":{"level4":{"level5":{"level6":{"level7":{"level8":{"level9":{"level10":{"level11":{"level12":{"level13":{"level14":{"level15":{"level16":{"level17":{"level18":{"level19":{"level20":{"level21":{"level22":{"level23":{"level24":{"level25":{"level26":{"level27":{"level28":{"level29":{"level30":{"level31":{"level32":{"level33":{"level34":{"level35":{"level36":{"level37":{"level38":{"level39":{"level40":{"level41":{"level42":{"level43":{"level44":{"level45":{"level46":{"level47":{"level48":{"level49":{"level50":{"level51":{"level52":{"level53":{"level54":{"level55":{"level56":{"level57":{"level58":{"level59":{"level60":{"level61":{"level62":{"level63":{"level64":{"level65":{"level66":{"level67":{"level68":{"level69":{"level70":{"level71":{"level72":{"level73":{"level74":{"level75":{"level76":{"level77":{"level78":{"level79":{"level80":{"level81":{"level82":{"level83":{"level84":{"level85":{"level86":{"level87":{"level88":{"level89":{"level90":{"level91":{"level92":{"level93":{"level94":{"level95":{"level96":{"level97":{"level98":{"level99":{"level100":{"level101":{"level102":{"level103":{"level104":{"level105":{"level106":{"level107":{"level108":{"level109":{"level110":{"level111":{"level112":{"level113":{"level114":{"level115":{"level116":{"level117":{"level118":{"level119":{"level120":{"level121":{"level122":{"level123":{"level124":{"level125":{"level126":{"level127":{"level128":{"level129":{"level130":{"level131":{"level132":{"level133":{"level134":{"level135":{"level136":{"level137":{"level138":{"level139":{"level140":{"level141":{"level142":{"level143":{"level144":{"level145":{"level146":{"level147":{"level148":{"level149":{"level150":{"level151":{"level152":{"level153":{"level154":{"level155":{"level156":{"level157":{"level158":{"level159":{"level160":{"level161":{"level162":{"level163":{"level164":{"level165":{"level166":{"level167":{"level168":{"level169":{"level170":{"level171":{"level172":{"level173":{"level174":{"level175":{"level176":{"level177":{"level178":{"level179":{"level180":{"level181":{"level182":{"level183":{"level184":{"level185":{"level186":{"level187":{"level188":{"level189":{"level190":{"level191":{"level192":{"level193":{"level194":{"level195":{"level196":{"level197":{"level198":{"level199":{"level200":{"level201":{"level202":{"level203":{"level204":{"level205":{"level206":{"level207":{"level208":{"level209":{"level210":{"level211":{"level212":{"level213":{"level214":{"level215":{"level216":{"level217":{"level218":{"level219":{"level220":{"level221":{"level222":{"level223":{"level224":{"level225":{"level226":{"level227":{"level228":{"level229":{"level230":{"level231":{"level232":{"level233":{"level234":{"level235":{"level236":{"level237":{"level238":{"level239":{"level240":{"level241":{"level242":{"level243":{"level244":{"level245":{"level246":{"level247":{"level248":{"level249":{"level250":[]}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}'
+JSON.SET mydeepjson . '{"level1":{"level2":{"level3":{"level4":{"level5":{"level6":{"level7":{"level8":{"level9":{"level10":{"level11":{"level12":{"level13":{"level14":{"level15":{"level16":{"level17":{"level18":{"level19":{"level20":{"level21":{"level22":{"level23":{"level24":{"level25":{"level26":{"level27":{"level28":{"level29":{"level30":{"level31":{"level32":{"level33":{"level34":{"level35":{"level36":{"level37":{"level38":{"level39":{"level40":{"level41":{"level42":{"level43":{"level44":{"level45":{"level46":{"level47":{"level48":{"level49":{"level50":{"level51":{"level52":{"level53":{"level54":{"level55":{"level56":{"level57":{"level58":{"level59":{"level60":{"level61":{"level62":{"level63":{"level64":{"level65":{"level66":{"level67":{"level68":{"level69":{"level70":{"level71":{"level72":{"level73":{"level74":{"level75":{"level76":{"level77":{"level78":{"level79":{"level80":{"level81":{"level82":{"level83":{"level84":{"level85":{"level86":{"level87":{"level88":{"level89":{"level90":{"level91":{"level92":{"level93":{"level94":{"level95":{"level96":{"level97":{"level98":{"level99":{"level100":[]}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}'
+json.type "alon:shmuely:redis:data:store:application:72" $.description 
