@@ -1,5 +1,3 @@
-// this code read read random line from a text file stored in /tmp/cmd.txt and contains random redis commands. the code send that random command at the end of the pipeline stream!
-
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -74,7 +72,12 @@ redisContext* connectRedis(const std::string& host, int port) {
  * For each iteration:
  *   (1) Send a batch of SET commands for normal keys.
  *   (2) Append a random command from /tmp/cmd.txt.
- *   (3) Read all replies (pipelineDepth replies for SET, one for the random command).
+ *       If that command begins with "SUBSCRIBE", append extra commands:
+ *         - SUNSUBSCRIBE shardchannel1 shardchannel2
+ *         - PUNSUBSCRIBE pattern pattern* p1 p2* p3*
+ *         - UNSUBSCRIBE channel channel2 channel3
+ *   (3) Read all replies (pipelineDepth replies for SET, one for the random command,
+ *       plus extra replies if extra commands were appended).
  *   (4) Save the normal keys (and their expected values) in globalData.
  */
 void writerThreadFunction(const std::string& host, int port,
@@ -82,12 +85,11 @@ void writerThreadFunction(const std::string& host, int port,
 {
     redisContext* conn = connectRedis(host, port);
     for (int iter = 0; iter < iterations; iter++) {
-        // Local batch structure.
         struct Item {
             std::string normalKey, normalVal;
         };
         std::vector<Item> localBatch(pipelineDepth);
-
+        
         // (1) Send SET commands.
         for (int i = 0; i < pipelineDepth; i++) {
             std::string timestamp = getCurrentTimestamp();
@@ -100,12 +102,21 @@ void writerThreadFunction(const std::string& host, int port,
                                localBatch[i].normalKey.c_str(),
                                localBatch[i].normalVal.c_str());
         }
-
-        // (2) Append a random command from /tmp/cmd.txt.
+        
+        // (2) Append a random command.
         std::string randomCmd = getRandomCommandFromFile();
         std::cout << "[Writer " << threadId << "] Random command: " << randomCmd << std::endl;
         redisAppendCommand(conn, randomCmd.c_str());
-
+        
+        // If the random command starts with "SUBSCRIBE", append extra commands.
+        int extraCommands = 0;
+        if (randomCmd.find("SUBSCRIBE") == 0) {
+            redisAppendCommand(conn, "SUNSUBSCRIBE shardchannel1 shardchannel2");
+            redisAppendCommand(conn, "PUNSUBSCRIBE pattern pattern* p1 p2* p3*");
+            redisAppendCommand(conn, "UNSUBSCRIBE channel channel2 channel3");
+            extraCommands = 3;
+        }
+        
         // (3) Read pipeline replies.
         // a) Read SET command replies.
         for (int i = 0; i < pipelineDepth; i++) {
@@ -123,7 +134,15 @@ void writerThreadFunction(const std::string& host, int port,
             }
             if (randomReply) freeReplyObject(randomReply);
         }
-
+        // c) Read extra commands' replies (if any).
+        for (int i = 0; i < extraCommands; i++) {
+            redisReply* extraReply = nullptr;
+            if (redisGetReply(conn, (void**)&extraReply) != REDIS_OK) {
+                std::cout << "[Writer " << threadId << "] Error reading extra command reply\n";
+            }
+            if (extraReply) freeReplyObject(extraReply);
+        }
+        
         // (4) Save the normal keys for later verification.
         {
             std::lock_guard<std::mutex> lock(globalDataMutex);
@@ -149,12 +168,10 @@ void readerThreadFunction(const std::string& host, int port,
     size_t totalKeys = keysToRead.size();
     while (index < totalKeys) {
         size_t batchSize = std::min((size_t)pipelineDepth, totalKeys - index);
-        // Send GET commands.
         for (size_t i = 0; i < batchSize; i++) {
             const KV& kv = keysToRead[index + i];
             redisAppendCommand(conn, "GET %s", kv.key.c_str());
         }
-        // Read GET replies.
         for (size_t i = 0; i < batchSize; i++) {
             redisReply* r = nullptr;
             if (redisGetReply(conn, (void**)&r) != REDIS_OK)
@@ -201,10 +218,17 @@ void singleConnectionFunction(const std::string& host, int port,
                                    localBatch[i].normalKey.c_str(),
                                    localBatch[i].normalVal.c_str());
             }
-            // Instead of sending a fixed INFO, send a random command from /tmp/cmd.txt.
+            // Append a random command.
             std::string randomCmd = getRandomCommandFromFile();
             std::cout << "[SingleConn] Random command: " << randomCmd << std::endl;
             redisAppendCommand(conn, randomCmd.c_str());
+            int extraCommands = 0;
+            if(randomCmd.find("SUBSCRIBE") == 0) {
+                redisAppendCommand(conn, "SUNSUBSCRIBE shardchannel1 shardchannel2");
+                redisAppendCommand(conn, "PUNSUBSCRIBE pattern pattern* p1 p2* p3*");
+                redisAppendCommand(conn, "UNSUBSCRIBE channel channel2 channel3");
+                extraCommands = 3;
+            }
             // Read replies.
             for (int i = 0; i < pipelineDepth; i++) {
                 redisReply* r = nullptr;
@@ -217,6 +241,12 @@ void singleConnectionFunction(const std::string& host, int port,
                 if (redisGetReply(conn, (void**)&randomReply) != REDIS_OK)
                     std::cout << "[SingleConn] Error reading random command reply\n";
                 if (randomReply) freeReplyObject(randomReply);
+            }
+            for (int i = 0; i < extraCommands; i++) {
+                redisReply* extraReply = nullptr;
+                if (redisGetReply(conn, (void**)&extraReply) != REDIS_OK)
+                    std::cout << "[SingleConn] Error reading extra command reply\n";
+                if (extraReply) freeReplyObject(extraReply);
             }
             {
                 std::lock_guard<std::mutex> lock(globalDataMutex);
@@ -335,10 +365,23 @@ int main(int argc, char* argv[]) {
     std::string finalCmd = getRandomCommandFromFile();
     std::cout << "[Final] Random command: " << finalCmd << std::endl;
     redisAppendCommand(conn, finalCmd.c_str());
+    int extraCommands = 0;
+    if(finalCmd.find("SUBSCRIBE") == 0) {
+        redisAppendCommand(conn, "SUNSUBSCRIBE shardchannel1 shardchannel2");
+        redisAppendCommand(conn, "PUNSUBSCRIBE pattern pattern* p1 p2* p3*");
+        redisAppendCommand(conn, "UNSUBSCRIBE channel channel2 channel3");
+        extraCommands = 3;
+    }
     {
         redisReply* r = nullptr;
         if (redisGetReply(conn, (void**)&r) != REDIS_OK)
             std::cout << "[Final] Error reading final random command reply\n";
+        if (r) freeReplyObject(r);
+    }
+    for (int i = 0; i < extraCommands; i++) {
+        redisReply* r = nullptr;
+        if (redisGetReply(conn, (void**)&r) != REDIS_OK)
+            std::cout << "[Final] Error reading extra command reply\n";
         if (r) freeReplyObject(r);
     }
     redisFree(conn);
