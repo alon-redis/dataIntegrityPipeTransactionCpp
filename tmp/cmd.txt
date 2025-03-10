@@ -279,12 +279,12 @@ XREVRANGE writers 1526985712946-18446744073709551615 - COUNT 2
 XREVRANGE writers + - COUNT 1
 ZPOPMAX myzset
 ZPOPMIN myzset
-BZPOPMIN zset1 zset2 0
-BZPOPMAX zset1 zset2 0
-BZPOPMIN zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 0
+BZPOPMIN zset1 zset2 0.001
+BZPOPMAX zset1 zset2 0.001
+BZPOPMIN zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 0.001
 BZPOPMIN zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1 zset2 zset1
-BZPOPMIN zset1 zset2 1
-BZPOPMIN zset1 zset2 2.5
+BZPOPMIN zset1 zset2 0.001
+BZPOPMIN zset1 zset2 0.0010.0010.0010.0010.001
 auth alon alon
 acl setuser alon on ~* +@string >alon
 acl setuser alon on ~* +@string +@admin -@hash>alon
