@@ -81,11 +81,11 @@ HSETNX key field value
 HVALS key
 hscan hash 0
 hscan 176 MATCH *11* COUNT 1000
-BLPOP key 1
-BRPOP key 1
-BLPOP key1{1} key2{1} key3{1} 1
-BRPOP key1{1} key2{1} key3{1} 1
-BRPOPLPUSH source destination 1
+BLPOP key 0.0001
+BRPOP key 0.0001
+BLPOP key1{1} key2{1} key3{1} 0.0001
+BRPOP key1{1} key2{1} key3{1} 0.0001
+BRPOPLPUSH source destination 0.0001
 LINDEX key index
 LINSERT mylist BEFORE "World" "There"
 LLEN key
@@ -146,12 +146,12 @@ PSUBSCRIBE pattern* p1 p2* p3*
 PUBSUB subcommand [argument [argument ...]]
 PUBLISH channel message
 PUNSUBSCRIBE pattern
-PUNSUBSCRIBE pattern pattern2 pattern3 pattern4
+PUNSUBSCRIBE pattern pattern* p1 p2* p3*
 PUNSUBSCRIBE
 SUBSCRIBE channel
 SUBSCRIBE
 SUBSCRIBE channel channel2 channel3
-UNSUBSCRIBE channel
+UNSUBSCRIBE channel channel2 channel3
 DISCARD
 UNWATCH
 WATCH key
@@ -193,7 +193,6 @@ DEBUG LOG
 SCRIPT DEBUG yes
 SCRIPT DEBUG no
 SCRIPT DEBUG sync
-FLUSHDBBBBB
 INFO
 INFO server
 INFO commandstats
@@ -274,8 +273,8 @@ XLEN writers
 XRANGE writers - + COUNT 2
 XREAD COUNT 2 STREAMS mystream writers 1526999352406-0 1526985685298-0
 XREAD COUNT 2 STREAMS mystream writers 0-0 0-0
-XREAD BLOCK 5000 COUNT 100 STREAMS mystream $
-XREAD BLOCK 5000 COUNT 100 STREAMS mystream 1526999644174-3
+XREAD BLOCK 1 COUNT 100 STREAMS mystream $
+XREAD BLOCK 1 COUNT 100 STREAMS mystream 1526999644174-3
 XREVRANGE writers 1526985712946-18446744073709551615 - COUNT 2
 XREVRANGE writers + - COUNT 1
 ZPOPMAX myzset
