@@ -122,7 +122,7 @@ void writerThreadFunction(const std::string& host, int port,
         for (int i = 0; i < pipelineDepth; i++) {
             redisReply* r = nullptr;
             if (redisGetReply(conn, (void**)&r) != REDIS_OK) {
-                std::cout << "[Writer " << threadId << "] Error reading reply for SET command\n";
+                std::cout << "[Writer " << threadId << "] Error reading reply for SET command, err=" << conn->errstr << "\n";
             }
             if (r) freeReplyObject(r);
         }
