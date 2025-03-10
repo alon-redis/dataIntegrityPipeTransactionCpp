@@ -307,7 +307,6 @@ auth alon !@#$^&*()_+=-
 acl load
 acl save /tmp/acl.log
 acl log
-
 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 set "" ""
 set "" "" PX 1 XX
@@ -345,7 +344,6 @@ SUNSUBSCRIBE channel channel1 channel2 channel3 channel *
 SSUBSCRIBE shardchannel1 shardchannel2
 SSUBSCRIBE shardchannel1
 SSUBSCRIBE
-
 CLUSTER SHARDS
 CLUSTER SHARD
 CLUSTER SHARDS 34
@@ -367,17 +365,10 @@ CLIENT NO-EVICT ON
 SHUTDOWN SAVE ABORT
 SHUTDOWN NOSAVE FORCE
 SORT_RO mylist BY weight_*->fieldname GET object_*->fieldname
-Hello 2
-Hello 2
-Hello 3
-Hello 3
-Hello 2
-Hello 2
 Hello
 hello 46234
 hello 72634876234862387462387462386487432
 hello gasd
-
 BF.ADD bf item1
 BF.EXISTS bf item1
 BF.INFO bf
@@ -455,7 +446,6 @@ TS.RANGE temperature:3:32 1548149180000 1548149210000 AGGREGATION avg 5000
 TS.MADD temperature:2:32 1548149180000 26 cpu:2:32 1548149183000 54
 TS.MRANGE 1548149180000 1548149210000 AGGREGATION avg 5000 FILTER area_id=32 sensor_id!=1
 TS.QUERYINDEX sensor_id=2
-
 "FT.CREATE" "idx:books" "ON" "JSON" "PREFIX" "1" "alon:shmuely:redis:data:store:application:" "SCORE" "1.0" "SCHEMA" "$.author" "AS" "author" "TEXT" "WEIGHT" "1.0" "SORTABLE" "$.id" "AS" "id" "TAG" "SEPARATOR" "," "$.description" "AS" "description" "TEXT" "WEIGHT" "1.0" "$.editions[*]" "AS" "editions" "TAG" "SEPARATOR" "," "$.genres[*]" "AS" "genres" "TAG" "SEPARATOR" "," "$.pages" "AS" "pages" "NUMERIC" "SORTABLE" "$.title" "AS" "title" "TEXT" "WEIGHT" "1.0" "SORTABLE" "$.year_published" "AS" "year_published" "NUMERIC" "$.metrics.rating_votes" "AS" "rating_votes" "NUMERIC" "SORTABLE" "$.metrics.score" "AS" "score" "NUMERIC" "SORTABLE" "$.inventory[*].status" "AS" "status" "TAG" "SEPARATOR" "," "$.inventory[*].stock_id" "AS" "stock_id" "TAG" "SEPARATOR" "," "$.format" "AS" "format" "TAG" "SEPARATOR" "," "$.is_available" "AS" "is_available" "TAG" "SEPARATOR" "," "$.price" "AS" "price" "NUMERIC" "SORTABLE" "$.isbn" "AS" "isbn" "TAG" "SEPARATOR" "," "$.weight_grams" "AS" "weight_grams" "NUMERIC" "SORTABLE" "$.dimensions.width_cm" "AS" "width_cm" "NUMERIC" "SORTABLE" "$.dimensions.height_cm" "AS" "height_cm" "NUMERIC" "SORTABLE" "$.dimensions.depth_cm" "AS" "depth_cm" "NUMERIC" "SORTABLE"
 "JSON.SET" "alon:shmuely:redis:data:store:application:0" "." "{\"author\": \"Alon Shmuely\", \"id\": \"0\", \"description\": \"Kind pass three talk western. Hit low age unit not same fall everybody. Long garden wind well. Condition whatever usually what American require. Admit Republican test event. Note majority fear series lay machine speak. Ask religious yet attack itself personal president. List news magazine heart painting. Research practice want interesting for sell. Sure friend second three. Occur paper attorney. Do type piece team data want develop. Surface high cause decide kind toward garden. Work news and learn people either green personal. Season material knowledge remember board. Whole generation conference record fall. Both player bad everything under. Than describe strong form card. Church factor top staff purpose possible admit. Participant hot memory room great whose above place. Suffer pay enjoy side create gun. Task often story just police ball raise. Today home send physical note. Life success outside least page his help. Morning power big service heavy. Decade health population so own newspaper rest. Stay establish raise draw mean. Tv whatever here subject through manager clear. Believe which guess assume same nation. Road American to name market. Get interesting herself scientist town. Middle order wonder establish. Successful quality body power soldier simple. Ahead animal behavior third. Get month crime within standard space challenge fish. Air stand administration strategy. Put loss indicate without that. Heart serious buy. Word bar against high business even. Less of walk teach within she. Ago pick have themselves. Also newspaper employee available able. Organization Democrat name reveal chair read. Too behind alone drug son. During rate total beautiful so under in. Question machine will democratic. Room teach him energy together move. Cultural stay article. Indicate food himself here remember floor. Believe image community. Apply ask report everybody network medical college. Back left leader. Enough operation second form take person. Evening choose authority sit behind suddenly. Site still idea environment customer in dream. Seem crime increase look task success opportunity. Forward stage around shoulder operation goal. Standard stock car response argue military plan scene. Way if word. Reduce hand message believe head clearly. Nation score remember those service.\", \"editions\": [\"russian\", \"italian\", \"chinese\", \"japanese\"], \"genres\": [\"mystery\"], \"inventory\": [{\"status\": \"available\", \"stock_id\": \"0_0\"}, {\"status\": \"maintenance\", \"stock_id\": \"0_1\"}, {\"status\": \"available\", \"stock_id\": \"0_2\"}, {\"status\": \"available\", \"stock_id\": \"0_3\"}, {\"status\": \"available\", \"stock_id\": \"0_4\"}, {\"status\": \"on_loan\", \"stock_id\": \"0_5\"}], \"metrics\": {\"rating_votes\": 815, \"score\": 2.58}, \"pages\": 488, \"title\": \"QA architect\", \"url\": \"https://www.long.net/\", \"year_published\": 1935, \"format\": \"paperback\", \"is_available\": true, \"price\": 8.85, \"isbn\": \"978-0-337-81892-9\", \"address\": \"98765 Ein Dor Apt. 0001 Rishon Lezion, IL 1948\", \"weight_grams\": 691, \"dimensions\": {\"width_cm\": 16.5, \"height_cm\": 30.27, \"depth_cm\": 5.81}}"
 "FT.SEARCH" "idx:books" "Shmuely" "RETURN" "1" "$.title" "LIMIT" "0" "10"
