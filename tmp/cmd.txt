@@ -303,7 +303,7 @@ acl getuser alon
 acl deluser alon
 acl
 auth alon
-auth alon !@#$%^&*()_+=-
+auth alon !@#$^&*()_+=-
 acl load
 acl save /tmp/acl.log
 acl log
@@ -497,7 +497,7 @@ FT.INFO idx:books Aaaaaaaa idx:books idx:books23
 FT.PROFILE idx:books SEARCH QUERY "Shmuely"
 FT.PROFILE idx:books SEARCH QUERY *
 FT.PROFILE idx:books SEARCH QUERY " "
-FT.PROFILE idx:books SEARCH QUERY "%"
+FT.PROFILE idx:books SEARCH QUERY "?"
 FT.PROFILE idx:books SEARCH QUERY ""
 FT.SPELLCHECK idx:books Shm DISTANCE 4
 FT.SPELLCHECK idx:books * DISTANCE 4
@@ -538,7 +538,7 @@ JSON.ARRTRIM "alon:shmuely:redis:data:store:application:99" $.[1].max_level 4 8
 json.resp "alon:shmuely:redis:data:store:application:99" $
 JSON.STRAPPEND "alon:shmuely:redis:data:store:application:99" "alon" "$.genre"
 JSON.STRAPPEND "alon:shmuely:redis:data:store:application:72" $.author '"BAZBAZ"
-JSON.STRAPPEND "alon:shmuely:redis:data:store:application:72" $.author '"BAZ ?!@#$%^&*()_+=`~::,|. BAZ"'
+JSON.STRAPPEND "alon:shmuely:redis:data:store:application:72" $.author '"BAZ ?!@#$^&*()_+=`~::,|. BAZ"'
 JSON.ARRLEN "alon:shmuely:redis:data:store:application:99"
 JSON.MSET "alon:shmuely:redis:data:store:application:99" $ '{"a":2}' "alon:shmuely:redis:data:store:application:72" $.f.a '3' doc3 $ '{"f1": {"a":1}, "f2":{"a":2}}'
 JSON.NUMINCRBY doc3 $..a 587234875628476587234658723465458246587234658763458763248757234658763425862438756284765926592659624597624956924659824659264596243598734985673498756982346598346598
