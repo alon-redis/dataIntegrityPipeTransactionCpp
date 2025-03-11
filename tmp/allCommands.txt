@@ -553,3 +553,111 @@ JSON.NUMMULTBY doc3 $..a A
 JSON.SET mydeepjson . '{"level1":{"level2":{"level3":{"level4":{"level5":{"level6":{"level7":{"level8":{"level9":{"level10":{"level11":{"level12":{"level13":{"level14":{"level15":{"level16":{"level17":{"level18":{"level19":{"level20":{"level21":{"level22":{"level23":{"level24":{"level25":{"level26":{"level27":{"level28":{"level29":{"level30":{"level31":{"level32":{"level33":{"level34":{"level35":{"level36":{"level37":{"level38":{"level39":{"level40":{"level41":{"level42":{"level43":{"level44":{"level45":{"level46":{"level47":{"level48":{"level49":{"level50":{"level51":{"level52":{"level53":{"level54":{"level55":{"level56":{"level57":{"level58":{"level59":{"level60":{"level61":{"level62":{"level63":{"level64":{"level65":{"level66":{"level67":{"level68":{"level69":{"level70":{"level71":{"level72":{"level73":{"level74":{"level75":{"level76":{"level77":{"level78":{"level79":{"level80":{"level81":{"level82":{"level83":{"level84":{"level85":{"level86":{"level87":{"level88":{"level89":{"level90":{"level91":{"level92":{"level93":{"level94":{"level95":{"level96":{"level97":{"level98":{"level99":{"level100":{"level101":{"level102":{"level103":{"level104":{"level105":{"level106":{"level107":{"level108":{"level109":{"level110":{"level111":{"level112":{"level113":{"level114":{"level115":{"level116":{"level117":{"level118":{"level119":{"level120":{"level121":{"level122":{"level123":{"level124":{"level125":{"level126":{"level127":{"level128":{"level129":{"level130":{"level131":{"level132":{"level133":{"level134":{"level135":{"level136":{"level137":{"level138":{"level139":{"level140":{"level141":{"level142":{"level143":{"level144":{"level145":{"level146":{"level147":{"level148":{"level149":{"level150":{"level151":{"level152":{"level153":{"level154":{"level155":{"level156":{"level157":{"level158":{"level159":{"level160":{"level161":{"level162":{"level163":{"level164":{"level165":{"level166":{"level167":{"level168":{"level169":{"level170":{"level171":{"level172":{"level173":{"level174":{"level175":{"level176":{"level177":{"level178":{"level179":{"level180":{"level181":{"level182":{"level183":{"level184":{"level185":{"level186":{"level187":{"level188":{"level189":{"level190":{"level191":{"level192":{"level193":{"level194":{"level195":{"level196":{"level197":{"level198":{"level199":{"level200":{"level201":{"level202":{"level203":{"level204":{"level205":{"level206":{"level207":{"level208":{"level209":{"level210":{"level211":{"level212":{"level213":{"level214":{"level215":{"level216":{"level217":{"level218":{"level219":{"level220":{"level221":{"level222":{"level223":{"level224":{"level225":{"level226":{"level227":{"level228":{"level229":{"level230":{"level231":{"level232":{"level233":{"level234":{"level235":{"level236":{"level237":{"level238":{"level239":{"level240":{"level241":{"level242":{"level243":{"level244":{"level245":{"level246":{"level247":{"level248":{"level249":{"level250":[]}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}'
 JSON.SET mydeepjson . '{"level1":{"level2":{"level3":{"level4":{"level5":{"level6":{"level7":{"level8":{"level9":{"level10":{"level11":{"level12":{"level13":{"level14":{"level15":{"level16":{"level17":{"level18":{"level19":{"level20":{"level21":{"level22":{"level23":{"level24":{"level25":{"level26":{"level27":{"level28":{"level29":{"level30":{"level31":{"level32":{"level33":{"level34":{"level35":{"level36":{"level37":{"level38":{"level39":{"level40":{"level41":{"level42":{"level43":{"level44":{"level45":{"level46":{"level47":{"level48":{"level49":{"level50":{"level51":{"level52":{"level53":{"level54":{"level55":{"level56":{"level57":{"level58":{"level59":{"level60":{"level61":{"level62":{"level63":{"level64":{"level65":{"level66":{"level67":{"level68":{"level69":{"level70":{"level71":{"level72":{"level73":{"level74":{"level75":{"level76":{"level77":{"level78":{"level79":{"level80":{"level81":{"level82":{"level83":{"level84":{"level85":{"level86":{"level87":{"level88":{"level89":{"level90":{"level91":{"level92":{"level93":{"level94":{"level95":{"level96":{"level97":{"level98":{"level99":{"level100":[]}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}'
 json.type "alon:shmuely:redis:data:store:application:72" $.description 
+CLIENT TRACKINGINFO
+CLIENT TRACKING ON bcast PREFIX * prefix tracked
+CLIENT TRACKING ON REDIRECT 1234 OPTIN
+CLIENT CACHING YES
+CLIENT TRACKING ON OPTOUT
+CLIENT UNTRACKING key
+CLIENT TRACKING
+CLIENT TRACKING onn
+CLIENT TRACKING of
+CLIENT TRACKING on BROADCAST
+CLIENT TRACKING on REDIRECT
+CLIENT TRACKING on REDIRECT two
+CLIENT TRACKING on PREFIX
+CLIENT TRACKING on PREFIX 123
+CLIENT TRACKING on NOLOOP 123
+CLIENT TRACKING on BCAST YES NO
+CLIENT TRACKING on OPTIN OPTOUT
+CLIENT TRACKING on BCAST YES PREFIX
+CLIENT TRACKING on BCAST PREFIX foo
+CLIENT TRACKING on BCAST NO PREFIX
+CLIENT TRACKING on OPTIN BCAST
+CLIENT TRACKING on REDIRECT 3 BCAST
+CLIENT TRACKING on REDIRECT -2 PREFIX foo
+CLIENT TRACKING off REDIRECT 1
+CLIENT TRACKING on NOLOP
+CLIENT TRACKING on PREFIX foo BAR NONE
+CLIENT TRACKING on BCAST YES REDIRECT
+CLIENT TRACKING on REDIRECT 3 BCAST NOLOOP PREFIX
+CLIENT TRACKING on REDIRECT 4 BCAST NO PREFIX foo NOLOP
+CLIENT TRACKING on REDIRECT ABC BCAST YES PREFIX foo NOLOOP
+CLIENT TRACKING on REDIRECT 5 PREFIX foo BCAST
+CLIENT TRACKING on REDIRECT 2
+CLIENT TRACKING off
+CLIENT TRACKING on BCAST YES
+CLIENT TRACKING on PREFIX foo
+CLIENT TRACKING on PREFIX bar
+CLIENT TRACKING on PREFIX foo BAR
+CLIENT TRACKING on NOLOOP
+CLIENT TRACKING on BCAST NO PREFIX foo
+CLIENT TRACKING on OPTIN
+CLIENT TRACKING on OPTOUT
+CLIENT TRACKING on BCAST YES PREFIX foo
+CLIENT TRACKING on BCAST YES PREFIX foo OPTOUT
+CLIENT TRACKING on BCAST YES PREFIX foo OPTIN
+CLIENT TRACKING on BCAST YES PREFIX foo NOLOOP
+CLIENT TRACKING on BCAST YES PREFIX foo NOLOOP OPTIN
+CLIENT TRACKING on NOLOOP PREFIX foo OPTIN
+CLIENT TRACKING on NOLOOP PREFIX foo OPTOUT
+CLIENT TRACKING on NOLOOP BCAST YES PREFIX foo OPTOUT
+CLIENT TRACKING on NOLOOP BCAST YES PREFIX foo
+CLIENT TRACKING on BCAST YES PREFIX foo REDIRECT 2
+CLIENT TRACKING on REDIRECT 3 BCAST YES PREFIX foo NOLOOP
+CLIENT TRACKING on REDIRECT 4 BCAST NO PREFIX foo NOLOOP
+CLIENT TRACKING on REDIRECT 5 BCAST YES PREFIX foo NOLOOP OPTIN
+CLIENT TRACKING on REDIRECT 6 BCAST YES PREFIX foo NOLOOP OPTOUT
+CLIENT TRACKING on REDIRECT 7 BCAST YES PREFIX foo NOLOOP OPTIN PREFIX bar
+SHUTDOWN NOW NOSAVE FORCE
+SHUTDOWN NOW NOSAVE BLABLA
+SHUTDOWN SAVE ABORT
+SHUTDOWN NOSAV FORCE
+XREAD STREAMS streamA streamB streamC streamD + + + +
+XREAD STREAMS streamA streamB streamC streamD + + * +
+XREAD STREAMS streamA streamB streamC streamD + > +
+XREAD STREAMS streamA streamB streamC 2 + + +
+ACL LOG 1
+ACL LOG 0
+ACL LOG ?
+COMMAND GETKEYS MSET a b c d e f
+COMMAND GETKEYS EVAL "not consulted" 3 key1 key2 key3 arg1 arg2 arg3
+COMMAND GETKEYSANDFLAGS LMOVE mylist1 mylist2 left left
+HEXPIRE myhash 300 FIELDS 2 field1 field3
+HEXPIRE myhash 300 FIELDS 50000000000000000000000000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000000000000000000000000000 field1 field3
+HEXPIRE myhash 50000000000000000000000000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000000000000000000000000000 FIELDS 2 field1 field3
+HEXPIRE myhash 300 FIELDS 2 field1
+HEXPIRE myhash 300 FIELDS * field1 field3
+HEXPIRE myhash STR FIELDS 2 field1 field3
+HEXPIRE myhash 300 FIELDS ? field1 field3
+HEXPIRE myhash -500 FIELDS 2 field1 field3
+HPEXPIRE myhash 2000 FIELDS 2 field1 field2
+HTTL myhash 3 field1 field2 field3
+HTTL myhash FIELDS 5000000000000000000000000000000000000000000000000000000000000000000000000000000000000 field1 field2 field3
+HTTL myhash FIELDS 3 field1 field2 field3
+HPERSIST myhash FIELDS 1 field2
+HPTTL myhash FIELDS 3 field1 field2 field3
+HEXPIRETIME myhash FIELDS 2 field1 field2
+HPEXPIRETIME myhash FIELDS 2 field1 field2
+HEXPIREAT myhash 1715704971 FIELDS 2 field1 field2
+HPEXPIREAT myhash 1715704971000 FIELDS 2 field1 field2
+HPEXPIREAT myhash 1715704971000A FIELDS 2 field1 field2
+HPEXPIREAT myhash 1715704971000 FIELDS field1 field2
+HEXPIRE myhash 20 NX FIELDS 2 field1 field2
+HEXPIRE myhash 20 GT FIELDS 2 field1 field2
+HEXPIRE myhash 20 LT FIELDS 2 field1 field2
+HEXPIRE myhash 20 XX FIELDS 2 field1 field2
+HEXPIRE myhash 20 XX FIELDS , field1 field2
+HEXPIRE myhash 20 XX FIELDS \x00 field1 field2
+WAITAOF 0 1 1000
+WAITAOF 120 1 1000
+WAITAOF 0 120 1000
+WAITAOF 0 1 0
+WAITAOF 0 1 A
+WAITAOF 0 1 ?
+WAITAOF 0 1
+CLIENT KILL MAXAGE 0
+CLIENT KILL MAXAGE A
+CLIENT KILL MAXAGE 1
+CLIENT KILL MAXAGE ?
+CLIENT KILL MAXAGE 27349872395872957924659237498237549236592365982365
